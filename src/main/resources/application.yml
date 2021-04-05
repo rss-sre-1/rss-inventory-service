@@ -15,4 +15,9 @@ spring:
     properties:
       hibernate_sql: true
     show-sql: true
-management:  endpoints:    web:      exposure:        include: "*"  endpoint:    health:      enabled: true      
+management:
+  metrics:
+    export:
+      prometheus:
+        # enabling prometheus format metrics
+        enabled: true   endpoints:    web:      exposure:        include: "*"  endpoint:    health:      enabled: true     
