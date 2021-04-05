@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rss-inventory-deployment
+  namespace: rss-inventory
   labels:
     app: rss-inventory-service
 spec:
@@ -63,6 +64,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: rss-inventory-ingress
+  namespace: rss-inventory
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -85,7 +87,7 @@ metadata:
   namespace: rss-inventory
   labels:
     app: rss-inventory-service
-    release: prometheus
+    release: kube-prometheus-stack
     team: rss-inventory-service
 spec:
   selector:
