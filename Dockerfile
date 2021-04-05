@@ -21,7 +21,7 @@ WORKDIR /app
 
 COPY --from=extractor /pinpoint-agent/pinpoint-agent-2.2.2/ /pinpoint-agent
 COPY pinpoint.config /pinpoint-agent/pinpoint.config
-COPY --from=builder /usr/src/app/*.jar /app/app.jar 
+COPY --from=builder /usr/src/app/target/*.jar /app/app.jar 
 # MUST CONFIRM ARTIFACT NAME! TRY HITHERTO EXISTING PROJECT ARTIFACT NAME
 EXPOSE 8080
 ENTRYPOINT ["java", "-javaagent:/pinpoint-agent/pinpoint-bootstrap-2.2.2.jar", "-Dpinpoint.agentId=rss-inventory", "-Dpinpoint.config=pinpoint-agent/pinpoint.config","-Dpinpoint.applicationName=rss-inventory","-Dpinpoint.container=rss-inventory", "-jar", "app.jar"]
