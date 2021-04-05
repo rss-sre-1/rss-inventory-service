@@ -75,3 +75,26 @@ spec:
         backend:
           serviceName: rss-inventory-service
           servicePort: 8989
+
+---
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: rss-inventory-service-monitor
+  namespace: rss-inventory
+  labels:
+    app: rss-inventory-service
+    release: prometheus
+    team: rss-inventory-service
+spec:
+  selector:
+    matchLabels:
+      app: rss-inventory-service
+  namespaceSelector:
+    matchNames: 
+    - rss-inventory
+  endpoints:
+  - port: http
+    path: /actuator/prometheus
+    interval: 10s
