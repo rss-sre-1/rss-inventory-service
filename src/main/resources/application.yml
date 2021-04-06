@@ -6,9 +6,7 @@ spring:
     name: rss-inventory-service
   cloud:
     kubernetes:
-      config:
-        name: rss-inventory
-        namespace: rss-inventory
+      discovery:        all-namespaces: true
   h2:
     console:
       enabled: true
