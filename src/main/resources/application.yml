@@ -1,6 +1,6 @@
 
 server:
-  port: 8989
+  port: 9999
 spring:
   application:
     name: rss-inventory-service
@@ -15,4 +15,17 @@ spring:
     properties:
       hibernate_sql: true
     show-sql: true
-management:  endpoints:    web:      exposure:        include: "*"  endpoint:    health:      enabled: true      
+  datasource:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      enabled: true      
+
+# if application.properties is not working, add the environment variables here
