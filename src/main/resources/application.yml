@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: rss-inventory-service
+  cloud:
+    kubernetes:
+      config:
+        name: rss-inventory
+        namespace: rss-inventory
   h2:
     console:
       enabled: true
