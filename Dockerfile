@@ -24,4 +24,4 @@ COPY pinpoint.config /pinpoint-agent/pinpoint.config
 COPY --from=builder /usr/src/app/target/*.jar /app/app.jar 
 # MUST CONFIRM ARTIFACT NAME! TRY HITHERTO EXISTING PROJECT ARTIFACT NAME
 EXPOSE 8080
-ENTRYPOINT ["java", "-javaagent:/pinpoint-agent/pinpoint-bootstrap-2.2.2.jar", "-Dpinpoint.agentId=rss-inventory", "-Dpinpoint.config=pinpoint-agent/pinpoint.config","-Dpinpoint.applicationName=rss-inventory","-Dpinpoint.container=rss-inventory", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-javaagent:/pinpoint-agent/pinpoint-bootstrap-2.2.2.jar", "-Dpinpoint.agentId=rss-inventory", "-Dpinpoint.config=/pinpoint-agent/pinpoint.config","-Dpinpoint.applicationName=rss-inventory","-Dpinpoint.container=rss-inventory", "-jar", "app.jar"]
