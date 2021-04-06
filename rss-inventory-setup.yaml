@@ -89,7 +89,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /inventory/?(.*)
+      - path: /inventory(.+)
         backend:
           serviceName: rss-inventory-service
           servicePort: 8989
