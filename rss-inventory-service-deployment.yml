@@ -25,3 +25,19 @@ spec:
             port: 8989
           initialDelaySeconds: 30
           periodSeconds: 30
+        env:
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: rss-inventory-credentials
+              key: url
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rss-inventory-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rss-inventory-credentials
+              key: password
