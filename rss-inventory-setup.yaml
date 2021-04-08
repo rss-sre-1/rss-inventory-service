@@ -6,10 +6,6 @@ metadata:
   labels:
     app: rss-inventory-service
 spec:
-  volumes:
-    - name: config
-      configMap:
-        name: fluent-conf
   replicas: 1
   minReadySeconds: 20
   selector:
@@ -20,6 +16,10 @@ spec:
       labels:
         app: rss-inventory-service
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: fluent-conf
       containers:
       - name: fluentd
         ports:
