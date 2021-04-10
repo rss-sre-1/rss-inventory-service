@@ -3,9 +3,8 @@ kind: PrometheusRule
 metadata:
   name: rss-inventory-prometheus-rules
   namespace: rss-inventory
-  labels: # one of the app labels will need to be removed. Temp status for debugging
-    app: rss-inventory-service 
-    job: rss-inventory-service 
+  labels: 
+    job: rss-inventory 
     release: kube-prometheus-stack
     app: kube-prometheus-stack
     team: p3
