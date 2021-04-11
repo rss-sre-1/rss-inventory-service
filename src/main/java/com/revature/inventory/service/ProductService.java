@@ -9,7 +9,7 @@ public interface ProductService {
 	public Product createProduct(Product product);
 
 	//GET ALL
-	public List<Product> findAllProducts();
+	public List <Product> findAllProducts();
 
 	//GET BY ID
 	public Product findProductById(Long id);
