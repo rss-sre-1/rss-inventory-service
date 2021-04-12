@@ -280,13 +280,13 @@ alertmanager:
   ## alertmanager.servicePerReplica must be enabled
   ##
   ingressPerReplica:
-    enabled: true
+    enabled: false
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     # ingressClassName: nginx
 
-    annotations: 
+    annotations: {}
       # kubernetes.io/ingress.class: nginx
       # nginx.ingress.kubernetes.io/use-regex: "true"
       # nginx.ingress.kubernetes.io/rewrite-target: /$1
@@ -357,7 +357,7 @@ alertmanager:
   ## Configuration for creating a separate Service for each statefulset Alertmanager replica
   ##
   servicePerReplica:
-    enabled: true
+    enabled: false
     annotations: {}
 
     ## Port for Alertmanager Service per replica to listen on
@@ -523,7 +523,7 @@ alertmanager:
     ## 	The route prefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
     ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
     ##
-    routePrefix: /prometheus/
+    routePrefix: /alertmanager/
 
     ## If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
     ##

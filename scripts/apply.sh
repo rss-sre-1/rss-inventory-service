@@ -9,4 +9,4 @@ cat tempLogs.txt >> bashLogs.txt
 rm tempLogs.txt
 echo ' ' >> bashLogs.txt
 
-#This script allows you to update the helm chart if you make any changes to the values.yaml
+# This script allows you to update the helm chart if you make any changes to the values.yaml
