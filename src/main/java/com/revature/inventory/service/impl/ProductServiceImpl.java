@@ -44,20 +44,19 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product updateProduct(Product product) {
 		try {
-		return productDao.save(product);
-		}
-		catch(IllegalArgumentException ex) {
+			return productDao.save(product);
+		}catch(IllegalArgumentException ex) {
 			throw new UnsuccessfulSaveOperationException(ex.getMessage());	
 		}
 	}
 		
 	@Override
 	public void deleteProductById(Long id) {
-		try {productDao.deleteById(id);	
+		try {
+			productDao.findById(id);
+			productDao.deleteById(id);
+		}catch(IllegalArgumentException ex) {
+			throw new UnsuccessfulDeleteOperationException(ex.getMessage());	
 		}
-		catch(IllegalArgumentException ex){
-			throw new UnsuccessfulDeleteOperationException(ex.getMessage());
-		}		
-
 	}
 }
