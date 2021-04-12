@@ -58,7 +58,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[5m]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[5m])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[5m])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[5m]))
         /
@@ -71,7 +71,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[30m]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[30m])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[30m])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[30m]))
         /
@@ -87,7 +87,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[1h]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[1h])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[1h])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[1h]))
         /
@@ -103,7 +103,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[2h]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[2h])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[2h])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[2h]))
         /
@@ -119,7 +119,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[6h]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[6h])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[6h])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[6h]))
         /
@@ -135,7 +135,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[1d]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[1d])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[1d])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[1d]))
         /
@@ -151,7 +151,7 @@ spec:
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[3d]))
         /
-        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[3d])) ) < 0.01 )
+        sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", status!~"5.."}[3d])) ) < 1.2 )
         /
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service"}[3d]))
         /
