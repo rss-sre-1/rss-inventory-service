@@ -10,11 +10,9 @@ This repository holds the inventory microservice which handles:
 
 These requests are handled by a single **ProductController.**
 
-
 Endpoints and methods are mapped out below.
 
-Feel free to import methods with this Postman [file.](RSS-Inventory-Service.postman_collection.json) Make sure to replace base url with your specific EKS DNS. 
-EKS DNS can be found with the command `kubectl get ing`
+Methods available for import with this Postman [file.](RSS-Inventory-Service.postman_collection.json) 
 
 #### Endpoints
 VERB | URL | USE
@@ -92,3 +90,4 @@ public void deleteProductById(@PathVariable Long id)
 * You must have a Dockerhub account. Use `docker build -t yourdockerhub/rss-inventory-service .` to build the Docker image and push that image to your Dockerhub.
 * Change the image target in the rss-inventory-setup.yaml in the deployment section to use the image from your Dockerhub that you just pushed.
 * Use `kubctl apply -f rss-inventory-setup.yaml` to redeploy your new image.
+* Feel free to import methods with this Postman [file](RSS-Inventory-Service.postman_collection.json) to test out requests. Make sure to replace base url with your specific EKS DNS. EKS DNS can be found with the command `kubectl get ing`
