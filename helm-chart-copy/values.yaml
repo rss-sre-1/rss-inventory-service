@@ -146,20 +146,59 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
+      slack_api_url: #add your slack webhook here
     route:
-      group_by: ['job']
+      receiver: 'default-receiver'
+      group_by:
+      - job
       group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 12h
-      receiver: 'null'
+      group_interval: 30s
+      repeat_interval: 3h
       routes:
-      - match:
-          alertname: Watchdog
-        receiver: 'null'
+      - receiver: 'rss-inventory'
+        group_wait: 10s
+        match:
+          job: rss-inventory
+      - receiver: 'rss-cart'
+        group_wait: 10s
+        match:
+          job: rss-cart
+      - receiver: 'rss-account'
+        group_wait: 10s
+        match:
+          job: rss-account
+      - receiver: 'rss-evaluation'
+        group_wait: 10s
+        match:
+          job: rss-evaluation
     receivers:
-    - name: 'null'
+    - name: 'default-receiver'
+      slack_configs:
+      - channel: '#alerts'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+    - name: 'rss-inventory'
+      slack_configs:
+      - channel: '#rss-inventory'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+    - name: 'rss-cart'
+      slack_configs:
+      - channel: '#rss-cart'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+    - name: 'rss-account'
+      slack_configs:
+      - channel: '#rss-account'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+    - name: 'rss-evaluation'
+      slack_configs:
+      - channel: '#rss-evaluation'
+        title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+        text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
     templates:
-    - '/etc/alertmanager/config/*.tmpl'
+    - /etc/alertmanager/config/*.tmpl
 
   ## Pass the Alertmanager configuration directives through Helm's templating
   ## engine. If the Alertmanager configuration contains Alertmanager templates,
@@ -248,6 +287,9 @@ alertmanager:
     # ingressClassName: nginx
 
     annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+      # nginx.ingress.kubernetes.io/rewrite-target: /$1
     labels: {}
 
     ## Final form of the hostname for each per replica ingress is
@@ -261,8 +303,8 @@ alertmanager:
 
     ## Paths to use for ingress rules
     ##
-    paths: []
-    # - /
+    paths: 
+    - /alertmanager/
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
@@ -481,7 +523,7 @@ alertmanager:
     ## 	The route prefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
     ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
     ##
-    routePrefix: /prometheus/
+    routePrefix: /alertmanager/
 
     ## If set to true all actions on the underlying managed objects are not going to be performed, except for delete actions.
     ##
@@ -1754,8 +1796,8 @@ prometheus:
 
     ## Paths to use for ingress rules
     ##
-    paths: []
-    # - /
+    paths:  
+    - /prometheus/
 
     ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
     ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types

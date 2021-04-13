@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 	public Product createProduct(Product product) {
 		try {return productDao.save(product); 
 		}
-		catch(IllegalArgumentException ex){
+		catch(Exception ex){
 		throw new UnsuccessfulSaveOperationException(ex.getMessage());
 		}
 	}
@@ -44,20 +44,17 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product updateProduct(Product product) {
 		try {
-		return productDao.save(product);
-		}
-		catch(IllegalArgumentException ex) {
+			return productDao.save(product);
+		}catch(Exception ex) {
 			throw new UnsuccessfulSaveOperationException(ex.getMessage());	
 		}
 	}
 		
 	@Override
 	public void deleteProductById(Long id) {
-		try {productDao.deleteById(id);	
+		try {productDao.deleteById(id);
+		}catch(Exception ex) {
+			throw new UnsuccessfulDeleteOperationException(ex.getMessage());	
 		}
-		catch(IllegalArgumentException ex){
-			throw new UnsuccessfulDeleteOperationException(ex.getMessage());
-		}		
-
 	}
 }
