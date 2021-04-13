@@ -1,4 +1,4 @@
-# Revature Swagg Shop
+# RSS-Inventory-Service
 This repository holds the inventory microservice which handles:
 
 - product creation*
