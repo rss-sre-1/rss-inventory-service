@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "4f7b5ea0-776e-4561-a801-7f2056f2f591",
+		"name": "RSS-Inventory-Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Test Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inventory/main",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"main"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inventory/product/3985",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"product",
+						"3985"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inventory/product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category\" : \"Clothing\",\r\n\t\"brand\" : \"Nike\",\r\n\t\"name\" : \"Socks\",\r\n\t\"description\" : \"orange hoodie\",\r\n\t\"model\" : \"7x \",\r\n\t\"image\" : \"\",\r\n\t\"quantity\" : 4,\r\n    \"unitPrice\" : 20,\r\n\t\"color\" : \"white\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/inventory/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Product",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 1102,\r\n    \"category\" : \"Clothing\",\r\n\t\"brand\" : \"Nike\",\r\n\t\"name\" : \"Hoodie\",\r\n\t\"description\" : \"A black hoodie\",\r\n\t\"model\" : \"2x \",\r\n\t\"image\" : \"\",\r\n\t\"quantity\" : 10,\r\n    \"unitPrice\" : 200,\r\n\t\"color\" : \"Black\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/inventory/product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inventory/product/3985",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventory",
+						"product",
+						"3985"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

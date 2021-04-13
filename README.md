@@ -1,4 +1,4 @@
-# Revature Swagg Shop
+# RSS-Inventory-Service
 This repository holds the inventory microservice which handles:
 
 - product creation*
@@ -10,7 +10,11 @@ This repository holds the inventory microservice which handles:
 
 These requests are handled by a single **ProductController.**
 
+
 Endpoints and methods are mapped out below.
+
+Feel free to import methods with this Postman [file.](RSS-Inventory-Service.postman_collection.json) Make sure to replace base url with your specific EKS DNS. 
+EKS DNS can be found with the command `kubectl get ing`
 
 #### Endpoints
 VERB | URL | USE
