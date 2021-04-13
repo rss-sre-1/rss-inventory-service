@@ -174,10 +174,6 @@ metadata:
     app: rss-inventory-service-load-test
     track: load-test
 spec:
-  volumes:
-    - name: config
-      configMap:
-        name: fluent-conf
   replicas: 0
   revisionHistoryLimit: 3
   minReadySeconds: 20
@@ -191,8 +187,12 @@ spec:
         app: rss-inventory-service-load-test
         track: load-test
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: fluent-conf
       containers:
-      - name: fluentd
+        - name: fluentd
         ports:
         - containerPort: 24224
         image: grafana/fluent-plugin-loki:latest
@@ -249,10 +249,6 @@ metadata:
     app: rss-inventory-service-canary
     track: canary
 spec:
-  volumes:
-    - name: config
-      configMap:
-        name: fluent-conf
   replicas: 0
   revisionHistoryLimit: 3
   minReadySeconds: 20
@@ -266,6 +262,10 @@ spec:
         app: rss-inventory-service-canary
         track: canary
     spec:
+      volumes:
+      - name: config
+        configMap:
+          name: fluent-conf
       containers:
       - name: fluentd
         ports:
