@@ -146,7 +146,7 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
-      slack_api_url: #add your slack webhook here
+      slack_api_url: #put your slack channel webhook url here
     route:
       receiver: 'default-receiver'
       group_by:
@@ -177,26 +177,31 @@ alertmanager:
       - channel: '#alerts'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+        title_link: 'http://ad8d6edfec9aa4a79be8f07ba490356a-1499412652.us-east-1.elb.amazonaws.com/alertmanager/#/alerts'
     - name: 'rss-inventory'
       slack_configs:
       - channel: '#rss-inventory'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+        title_link: 'http://ad8d6edfec9aa4a79be8f07ba490356a-1499412652.us-east-1.elb.amazonaws.com/alertmanager/#/alerts'
     - name: 'rss-cart'
       slack_configs:
       - channel: '#rss-cart'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+        title_link: 'http://ad8d6edfec9aa4a79be8f07ba490356a-1499412652.us-east-1.elb.amazonaws.com/alertmanager/#/alerts'
     - name: 'rss-account'
       slack_configs:
       - channel: '#rss-account'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+        title_link: 'http://ad8d6edfec9aa4a79be8f07ba490356a-1499412652.us-east-1.elb.amazonaws.com/alertmanager/#/alerts'
     - name: 'rss-evaluation'
       slack_configs:
       - channel: '#rss-evaluation'
         title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
         text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ .Annotations.message }}\n{{ end }}"
+        title_link: 'http://ad8d6edfec9aa4a79be8f07ba490356a-1499412652.us-east-1.elb.amazonaws.com/alertmanager/#/alerts'
     templates:
     - /etc/alertmanager/config/*.tmpl
 
