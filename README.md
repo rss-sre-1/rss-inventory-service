@@ -12,7 +12,7 @@ These requests are handled by a single **ProductController.**
 
 Endpoints and methods are mapped out below.
 
-Feel free to import Postman file  for a quick set up. 
+Feel free to import Postman file [here](RSS-Inventory-Service.postman_collection.json)          
 Just make sure to replace base url with your specific EKS DNS. 
 EKS DNS can be found by using the command `kubectl get ing`
 
