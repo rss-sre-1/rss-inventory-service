@@ -10,7 +10,7 @@ env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
   NAMESPACE: rss-inventory
-  CONTAINER: rss-inventory-service-canary
+  CONTAINER: rss-inventory-service
 jobs:
   access_aws:
     name: access AWS
