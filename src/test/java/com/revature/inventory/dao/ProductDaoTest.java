@@ -38,122 +38,122 @@ class ProductDaoTest {
 	
 	
 
-	@Test
-	void testCreateProduct() {
-		Product product = new Product();
-		product.setCategory("Electronics");
-		product.setBrand("Sony");
-		product.setName("Headset");
-		product.setDescription("Wired Headset noise cancelling");
-		product.setModel("BX200");
-		product.setImage("www.sony.headset.image.com");
-		product.setQuantity(30);
-		product.setUnitPrice(300);
-		product.setColor("Black");
+// 	@Test
+// 	void testCreateProduct() {
+// 		Product product = new Product();
+// 		product.setCategory("Electronics");
+// 		product.setBrand("Sony");
+// 		product.setName("Headset");
+// 		product.setDescription("Wired Headset noise cancelling");
+// 		product.setModel("BX200");
+// 		product.setImage("www.sony.headset.image.com");
+// 		product.setQuantity(30);
+// 		product.setUnitPrice(300);
+// 		product.setColor("Black");
 				
-		product = productDao.save(product);
+// 		product = productDao.save(product);
 
-		Product productFromDb = productDao.findById(product.getId()).get();	
-		assertEquals(productFromDb, product);
-	}
+// 		Product productFromDb = productDao.findById(product.getId()).get();	
+// 		assertEquals(productFromDb, product);
+// 	}
 	
-	@Test
-	void testFindAll() {
-		Product product = new Product();
-		product.setCategory("Electronics");
-		product.setBrand("Sony");
-		product.setName("Headset");
-		product.setDescription("Wired Headset noise cancelling");
-		product.setModel("BX200");
-		product.setImage("www.sony.headset.image.com");
-		product.setQuantity(30);
-		product.setUnitPrice(300);
-		product.setColor("Black");
+// 	@Test
+// 	void testFindAll() {
+// 		Product product = new Product();
+// 		product.setCategory("Electronics");
+// 		product.setBrand("Sony");
+// 		product.setName("Headset");
+// 		product.setDescription("Wired Headset noise cancelling");
+// 		product.setModel("BX200");
+// 		product.setImage("www.sony.headset.image.com");
+// 		product.setQuantity(30);
+// 		product.setUnitPrice(300);
+// 		product.setColor("Black");
 				
-		product = productDao.save(product);
+// 		product = productDao.save(product);
 		
-		Product product2 = new Product();
-		product2.setCategory("Electronics");
-		product2.setBrand("Samsung");
-		product2.setName("Watch");
-		product2.setDescription("Smart Watch");
-		product2.setModel("S200");
-		product2.setImage("www.samsung.smartwatch.image.com");
-		product2.setQuantity(20);
-		product2.setUnitPrice(500);
-		product2.setColor("Silver");
+// 		Product product2 = new Product();
+// 		product2.setCategory("Electronics");
+// 		product2.setBrand("Samsung");
+// 		product2.setName("Watch");
+// 		product2.setDescription("Smart Watch");
+// 		product2.setModel("S200");
+// 		product2.setImage("www.samsung.smartwatch.image.com");
+// 		product2.setQuantity(20);
+// 		product2.setUnitPrice(500);
+// 		product2.setColor("Silver");
 
-		productDao.save(product2);
+// 		productDao.save(product2);
 
-		Product product3 = new Product();
-		product3.setCategory("Clothing");
-		product3.setBrand("Nike");
-		product3.setName("Shirt");
-		product3.setDescription("Red Shirt Printed");
-		product3.setModel("RN10");
-		product3.setImage("www.nike.shirt.image.com");
-		product3.setQuantity(23);
-		product3.setUnitPrice(100);
-		product3.setColor("Red");
+// 		Product product3 = new Product();
+// 		product3.setCategory("Clothing");
+// 		product3.setBrand("Nike");
+// 		product3.setName("Shirt");
+// 		product3.setDescription("Red Shirt Printed");
+// 		product3.setModel("RN10");
+// 		product3.setImage("www.nike.shirt.image.com");
+// 		product3.setQuantity(23);
+// 		product3.setUnitPrice(100);
+// 		product3.setColor("Red");
 
-		productDao.save(product3);
+// 		productDao.save(product3);
 
-		List<Product> productList = new ArrayList<>();
+// 		List<Product> productList = new ArrayList<>();
 		
-		productList = productDao.findAll();
+// 		productList = productDao.findAll();
 		
-		assertEquals(3,productList.size());	
-	}
+// 		assertEquals(3,productList.size());	
+// 	}
 
 
-@Test
-void testFindByCategory() {
-	Product product = new Product();
-	product.setCategory("Electronics");
-	product.setBrand("Sony");
-	product.setName("Headset");
-	product.setDescription("Wired Headset noise cancelling");
-	product.setModel("BX200");
-	product.setImage("www.sony.headset.image.com");
-	product.setQuantity(30);
-	product.setUnitPrice(300);
-	product.setColor("Black");
+// @Test
+// void testFindByCategory() {
+// 	Product product = new Product();
+// 	product.setCategory("Electronics");
+// 	product.setBrand("Sony");
+// 	product.setName("Headset");
+// 	product.setDescription("Wired Headset noise cancelling");
+// 	product.setModel("BX200");
+// 	product.setImage("www.sony.headset.image.com");
+// 	product.setQuantity(30);
+// 	product.setUnitPrice(300);
+// 	product.setColor("Black");
 			
-	productDao.save(product);
+// 	productDao.save(product);
 	
-	Product product2 = new Product();
-	product2.setCategory("Electronics");
-	product2.setBrand("Samsung");
-	product2.setName("Watch");
-	product2.setDescription("Smart Watch");
-	product2.setModel("S200");
-	product2.setImage("www.samsung.smartwatch.image.com");
-	product2.setQuantity(20);
-	product2.setUnitPrice(500);
-	product2.setColor("Silver");
+// 	Product product2 = new Product();
+// 	product2.setCategory("Electronics");
+// 	product2.setBrand("Samsung");
+// 	product2.setName("Watch");
+// 	product2.setDescription("Smart Watch");
+// 	product2.setModel("S200");
+// 	product2.setImage("www.samsung.smartwatch.image.com");
+// 	product2.setQuantity(20);
+// 	product2.setUnitPrice(500);
+// 	product2.setColor("Silver");
 
-	productDao.save(product2);
+// 	productDao.save(product2);
 
-	Product product3 = new Product();
-	product3.setCategory("Clothing");
-	product3.setBrand("Nike");
-	product3.setName("Shirt");
-	product3.setDescription("Red Shirt Printed");
-	product3.setModel("RN10");
-	product3.setImage("www.nike.shirt.image.com");
-	product3.setQuantity(23);
-	product3.setUnitPrice(100);
-	product3.setColor("Red");
+// 	Product product3 = new Product();
+// 	product3.setCategory("Clothing");
+// 	product3.setBrand("Nike");
+// 	product3.setName("Shirt");
+// 	product3.setDescription("Red Shirt Printed");
+// 	product3.setModel("RN10");
+// 	product3.setImage("www.nike.shirt.image.com");
+// 	product3.setQuantity(23);
+// 	product3.setUnitPrice(100);
+// 	product3.setColor("Red");
 
-	productDao.save(product3);
+// 	productDao.save(product3);
 
-	List<Product> productList = new ArrayList<>();
+// 	List<Product> productList = new ArrayList<>();
 	
-	productList = productDao.findByCategory("Electronics");
+// 	productList = productDao.findByCategory("Electronics");
 	
-	System.out.println(productList);
+// 	System.out.println(productList);
 	
-	assertEquals(2,productList.size());
+// 	assertEquals(2,productList.size());
 	
-	}
+// 	}
 }
