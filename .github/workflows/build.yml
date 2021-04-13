@@ -13,7 +13,7 @@ env:
   JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }} # new for handoffOne branch
   JENKINS_USER: inventory_service
   NAMESPACE: rss-inventory
-  CONTAINER: rss-inventory-service-load-test
+  CONTAINER: rss-inventory-service
 jobs:
   sonar_maven_build:
     runs-on: ubuntu-latest
