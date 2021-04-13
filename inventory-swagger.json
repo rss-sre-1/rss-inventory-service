@@ -1,0 +1,207 @@
+{
+  "basePath": "",
+  "definitions": {
+    "Product": {
+      "properties": {
+        "brand": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "discounted": {
+          "type": "boolean"
+        },
+        "discountedAmount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "image": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitPrice": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "rss-inventory-service-load-test.rss-inventory.svc.cluster.local:8989",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "paths": {
+    "/main": {
+      "get": {
+        "operationId": "getProductById_1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      }
+    },
+    "/product": {
+      "get": {
+        "operationId": "getAllProduct",
+        "parameters": [],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Product"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "createProductById",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "operationId": "updateProduct",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      }
+    },
+    "/product/{id}": {
+      "delete": {
+        "operationId": "deleteProductById",
+        "parameters": [
+          {
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      },
+      "get": {
+        "operationId": "getProductById",
+        "parameters": [
+          {
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        },
+        "tags": [
+          "product-controller"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0",
+  "x-components": {}
+}
