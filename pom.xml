@@ -24,7 +24,7 @@
 		<sonar.projectKey>rss-sre-1_rss-inventory-service</sonar.projectKey>
 		<sonar.organization>rss-sre-1</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>src/**/exceptions/**/*</sonar.exclusions>
+		<sonar.exclusions>src/**/exceptions/**/*, src/**/dao/**/*, src/**/RevatureInventoryApplicationTests.java </sonar.exclusions>
 		<sonar.java.binaries>target</sonar.java.binaries>
 	</properties>
 
@@ -169,6 +169,8 @@
 					<outputDirectory>${coverage.reports.dir}</outputDirectory>
 					<excludes>
 						<exclude>**/exceptions/**</exclude>
+						<exclude>**/dao/**</exclude>
+						<exclude>**/RevatureInventoryApplicationTests.java</exclude>
 					</excludes>
 				</configuration>
 				<executions>
