@@ -19,12 +19,12 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR5</spring-cloud.version>
 		<coverage.reports.dir>target/coverage-reports</coverage.reports.dir>
-		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.coverage.jacoco.xmlReportPaths>target/coverage-reports/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 
-		<sonar.projectKey>201026java_rss-inventory-service</sonar.projectKey>
-		<sonar.organization>201026java</sonar.organization>
+		<sonar.projectKey>rss-sre-1_rss-inventory-service</sonar.projectKey>
+		<sonar.organization>rss-sre-1</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>src/**/models/**/*</sonar.exclusions>
+		<sonar.exclusions>src/**/exceptions/**/*, src/**/dao/**/*, src/**/RevatureInventoryApplicationTests.java </sonar.exclusions>
 		<sonar.java.binaries>target</sonar.java.binaries>
 	</properties>
 
@@ -168,8 +168,9 @@
 				<configuration>
 					<outputDirectory>${coverage.reports.dir}</outputDirectory>
 					<excludes>
-						<exclude>**/entities/**</exclude>
-						<exclude>**/DTOs/**</exclude>
+						<exclude>**/exceptions/**</exclude>
+						<exclude>**/dao/**</exclude>
+						<exclude>**/RevatureInventoryApplicationTests.java</exclude>
 					</excludes>
 				</configuration>
 				<executions>

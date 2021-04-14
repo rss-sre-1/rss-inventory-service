@@ -14,20 +14,20 @@ spec:
     rules:
     - alert: RSSinventory_LatencyBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High requests latency budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High requests latency budget burn for {{ $labels.app }}'
         description: 'High latency ({{ $labels.latency}}s) ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'        
         message: 'High requests latency budget burn for job=rss-inventory-service,latency=1.2 (current value: {{ $value }})'
       expr: |
         (
-          RSSinventory_http_request_latency:burnrate1h{job="rss-inventory-service"} > (14.4*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate1h{job="rss-inventory-service"} > (14.4*(1-0.995000))
           and
-          RSSinventory_http_request_latency:burnrate5m{job="rss-inventory-service"} > (14.4*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate5m{job="rss-inventory-service"} > (14.4*(1-0.995000))
         )
         or
         (
-          RSSinventory_http_request_latency:burnrate6h{job="rss-inventory-service"} > (6*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate6h{job="rss-inventory-service"} > (6*(1-0.995000))
           and
-          RSSinventory_http_request_latency:burnrate30m{job="rss-inventory-service"} > (6*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate30m{job="rss-inventory-service"} > (6*(1-0.995000))
         )
       labels:
         job: rss-inventory
@@ -35,20 +35,20 @@ spec:
 
     - alert: RSSinventory_LatencyBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High requests latency budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High requests latency budget burn for {{ $labels.app }}'
         description: 'High latency ({{ $labels.latency}}s) ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'
         message: 'High requests latency budget burn for job=rss-inventory-service,latency=1.2 (current value: {{ $value }})'
       expr: |
         (
-          RSSinventory_http_request_latency:burnrate1d{job="rss-inventory-service"} > (3*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate1d{job="rss-inventory-service"} > (3*(1-0.995000))
           and
-          RSSinventory_http_request_latency:burnrate2h{job="rss-inventory-service"} > (3*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate2h{job="rss-inventory-service"} > (3*(1-0.995000))
         )
         or
         (
-          RSSinventory_http_request_latency:burnrate3d{job="rss-inventory-service"} > (1*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate3d{job="rss-inventory-service"} > (1*(1-0.995000))
           and
-          RSSinventory_http_request_latency:burnrate6h{job="rss-inventory-service"} > (1*(1-0.995000))
+          RSSinventory:http_request_latency:burnrate6h{job="rss-inventory-service"} > (1*(1-0.995000))
         )
       labels:
         job: rss-inventory
@@ -65,7 +65,7 @@ spec:
         sum(rate(http_server_requests_seconds_count{job="rss-inventory-service"}[5m])) ) >= 0 )
       labels:
         job: rss-inventory
-      record: RSSinventory_http_request_latency:burnrate5m
+      record: RSSinventory:http_request_latency:burnrate5m
 
     - expr: |
         1 - 
@@ -82,7 +82,7 @@ spec:
         latency: "1.2"
         window: "30 min"
         
-      record: RSSinventory_http_request_latency:burnrate30m
+      record: RSSinventory:http_request_latency:burnrate30m
     - expr: |
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[1h]))
@@ -98,7 +98,7 @@ spec:
         latency: "1.2"
         window: "1 hour"
 
-      record: RSSinventory_http_request_latency:burnrate1h
+      record: RSSinventory:http_request_latency:burnrate1h
     - expr: |
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[2h]))
@@ -114,7 +114,7 @@ spec:
         latency: "1.2"
         window: "2 hour"
 
-      record: RSSinventory_http_request_latency:burnrate2h
+      record: RSSinventory:http_request_latency:burnrate2h
     - expr: |
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[6h]))
@@ -130,7 +130,7 @@ spec:
         latency: "1.2"
         window: "6 hour"
 
-      record: RSSinventory_http_request_latency:burnrate6h
+      record: RSSinventory:http_request_latency:burnrate6h
     - expr: |
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[1d]))
@@ -146,7 +146,7 @@ spec:
         latency: "1.2"
         window: "1 day"
 
-      record: RSSinventory_http_request_latency:burnrate1d
+      record: RSSinventory:http_request_latency:burnrate1d
     - expr: |
         1 - 
         (( sum(rate(http_server_requests_seconds_sum{job="rss-inventory-service", status!~"5.."}[3d]))
@@ -162,19 +162,19 @@ spec:
         latency: "1.2"
         window: "3 day"
         
-      record: RSSinventory_http_request_latency:burnrate3d
+      record: RSSinventory:http_request_latency:burnrate3d
 
   - name: rssinventorySLOs-http_requests_error_rate
     rules:
     - alert: RSSinventory_ErrorBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.app }}'
         description: 'High error ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'
         message: 'High error budget burn for job=rss-inventory-service (current value: {{ $value }})'
       expr: |
-        sum(RSSinventory_http_request_error_rate:burnrate5m{job="rss-inventory-service"}) > (14.40 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate5m{job="rss-inventory-service"}) > (14.40 * (1-0.99500))
         and
-        sum(RSSinventory_http_request_error_rate:burnrate1h{job="rss-inventory-service"}) > (14.40 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate1h{job="rss-inventory-service"}) > (14.40 * (1-0.99500))
       for: 2m
       labels:
         job: rss-inventory
@@ -182,13 +182,13 @@ spec:
 
     - alert: RSSinventory_ErrorBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.app }}'
         description: 'High error ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'
         message: 'High error budget burn for job=rss-inventory-service (current value: {{ $value }})'
       expr: |
-        sum(RSSinventory_http_request_error_rate:burnrate30m{job="rss-inventory-service"}) > (6.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate30m{job="rss-inventory-service"}) > (6.00 * (1-0.99500))
         and
-        sum(RSSinventory_http_request_error_rate:burnrate6h{job="rss-inventory-service"}) > (6.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate6h{job="rss-inventory-service"}) > (6.00 * (1-0.99500))
       for: 15m
       labels:
         job: rss-inventory
@@ -196,13 +196,13 @@ spec:
 
     - alert: RSSinventory_ErrorBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.app }}'
         description: 'High error ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'
         message: 'High error budget burn for job=rss-inventory-service (current value: {{ $value }})'
       expr: |
-        sum(RSSinventory_http_request_error_rate:burnrate2h{job="rss-inventory-service"}) > (3.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate2h{job="rss-inventory-service"}) > (3.00 * (1-0.99500))
         and
-        sum(RSSinventory_http_request_error_rate:burnrate1d{job="rss-inventory-service"}) > (3.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate1d{job="rss-inventory-service"}) > (3.00 * (1-0.99500))
       for: 1h
       labels:
         job: rss-inventory
@@ -210,13 +210,13 @@ spec:
 
     - alert: RSSinventory_ErrorBudgetBurn
       annotations:
-        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.job }}'
+        summary: '[{{ $labels.severity }}] High error budget burn for {{ $labels.app }}'
         description: 'High error ratio exceeds burn rate for job {{ $labels.job }}. Current value is {{ $value }} for {{ $labels.window }} window.'
         message: 'High error budget burn for job=rss-inventory-service (current value: {{ $value }})'
       expr: |
-        sum(RSSinventory_http_request_error_rate:burnrate6h{job="rss-inventory-service"}) > (1.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate6h{job="rss-inventory-service"}) > (1.00 * (1-0.99500))
         and
-        sum(RSSinventory_http_request_error_rate:burnrate3d{job="rss-inventory-service"}) > (1.00 * (1-0.99500))
+        sum(RSSinventory:http_request_error_rate:burnrate3d{job="rss-inventory-service"}) > (1.00 * (1-0.99500))
       for: 3h
       labels:
         job: rss-inventory
@@ -231,7 +231,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "1 day"
-      record: RSSinventory_http_request_error_rate:burnrate1d
+      record: RSSinventory:http_request_error_rate:burnrate1d
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[1h]))
@@ -241,7 +241,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "1 hour"
-      record: RSSinventory_http_request_error_rate:burnrate1h
+      record: RSSinventory:http_request_error_rate:burnrate1h
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[2h]))
@@ -251,7 +251,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "2 hour"
-      record: RSSinventory_http_request_error_rate:burnrate2h
+      record: RSSinventory:http_request_error_rate:burnrate2h
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[30m]))
@@ -261,7 +261,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "30 min"
-      record: RSSinventory_http_request_error_rate:burnrate30m
+      record: RSSinventory:http_request_error_rate:burnrate30m
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[3d]))
@@ -271,7 +271,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "3 day"
-      record: RSSinventory_http_request_error_rate:burnrate3d
+      record: RSSinventory:http_request_error_rate:burnrate3d
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[5m]))
@@ -281,7 +281,7 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "5 min"
-      record: RSSinventory_http_request_error_rate:burnrate5m
+      record: RSSinventory:http_request_error_rate:burnrate5m
     - expr: |
         1 -
         ( sum(rate(http_server_requests_seconds_count{job="rss-inventory-service", url!~"/actuator/.*", status!~"5.."}[6h]))
@@ -291,4 +291,4 @@ spec:
         app: rss-inventory
         job: rss-inventory-service
         window: "6 hour"
-      record: RSSinventory_http_request_error_rate:burnrate6h
+      record: RSSinventory:http_request_error_rate:burnrate6h
